@@ -76,6 +76,28 @@ async function deleteTask(id) {
   await deleteDoc(doc(db, "tasks", id));
 }
 
+async function editTask(id, newText) {
+  const trimmed = newText.trim();
+  if (!trimmed) return false;
+  await updateDoc(doc(db, "tasks", id), { text: trimmed });
+  return true;
+}
+
+function startEdit(li, span, editInput, task) {
+  if (task.completed) return;
+  li.classList.add("editing");
+  span.style.display = "none";
+  editInput.style.display = "block";
+  editInput.focus();
+  editInput.select();
+}
+
+function stopEdit(li, span, editInput) {
+  li.classList.remove("editing");
+  span.style.display = "";
+  editInput.style.display = "none";
+}
+
 function formatDue(dateStr) {
   if (!dateStr) return null;
   const [year, month, day] = dateStr.split("-");
@@ -110,6 +132,29 @@ function render() {
     const span = document.createElement("span");
     span.className = "todo-text";
     span.textContent = task.text;
+    span.title = "Double-click to edit";
+    span.addEventListener("dblclick", () => startEdit(li, span, editInput, task));
+
+    const editInput = document.createElement("input");
+    editInput.type = "text";
+    editInput.className = "edit-input";
+    editInput.value = task.text;
+    editInput.addEventListener("keydown", async (e) => {
+      if (e.key === "Enter") {
+        const ok = await editTask(task.id, editInput.value);
+        if (ok) stopEdit(li, span, editInput);
+      } else if (e.key === "Escape") {
+        editInput.value = task.text;
+        stopEdit(li, span, editInput);
+      }
+    });
+    editInput.addEventListener("blur", async () => {
+      if (li.classList.contains("editing")) {
+        const ok = await editTask(task.id, editInput.value);
+        if (!ok) editInput.value = task.text;
+        stopEdit(li, span, editInput);
+      }
+    });
 
     const delBtn = document.createElement("button");
     delBtn.className = "delete-btn";
@@ -119,6 +164,7 @@ function render() {
 
     li.appendChild(checkbox);
     li.appendChild(span);
+    li.appendChild(editInput);
 
     if (task.due) {
       const badge = document.createElement("span");
