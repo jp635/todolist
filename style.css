@@ -1,0 +1,197 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f0f2f5;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.container {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 32px;
+  width: 100%;
+  max-width: 560px;
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
+/* Form */
+.form-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+#task-input {
+  flex: 1 1 200px;
+  padding: 10px 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#task-input:focus {
+  border-color: #6366f1;
+}
+
+#due-input {
+  padding: 10px 10px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  outline: none;
+  color: #555;
+  transition: border-color 0.2s;
+}
+
+#due-input:focus {
+  border-color: #6366f1;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+  background: #4f52d8;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 6px;
+  margin: 20px 0 16px;
+}
+
+.filter-btn {
+  padding: 6px 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  background: transparent;
+  font-size: 0.85rem;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  border-color: #6366f1;
+  color: #6366f1;
+}
+
+.filter-btn.active {
+  background: #6366f1;
+  border-color: #6366f1;
+  color: #fff;
+}
+
+/* Todo list */
+#todo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #fafafa;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  transition: border-color 0.2s, opacity 0.2s;
+}
+
+.todo-item.completed {
+  opacity: 0.55;
+  border-color: #d1fae5;
+  background: #f0fdf4;
+}
+
+.todo-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #6366f1;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.todo-text {
+  flex: 1;
+  font-size: 0.95rem;
+  color: #1a1a2e;
+  word-break: break-word;
+}
+
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.due-badge {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: #ede9fe;
+  color: #6366f1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.due-badge.overdue {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.delete-btn:hover {
+  color: #ef4444;
+}
+
+/* Empty message */
+#empty-msg {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-top: 24px;
+  display: none;
+}
