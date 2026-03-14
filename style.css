@@ -183,6 +183,23 @@ button[type="submit"]:hover {
   color: #ef4444;
 }
 
+/* Inline edit */
+.edit-input {
+  display: none;
+  flex: 1;
+  padding: 2px 6px;
+  border: 2px solid #6366f1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  background: #fff;
+}
+
+.todo-item.editing {
+  border-color: #6366f1;
+}
+
 /* Empty message */
 #empty-msg {
   text-align: center;
