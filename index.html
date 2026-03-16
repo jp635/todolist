@@ -4,12 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Todo List</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>My Todo List</h1>
 
+    <div class="add-section">
     <form id="todo-form">
       <div class="form-row">
         <input
@@ -19,15 +23,23 @@
           autocomplete="off"
           required
         />
-        <input type="date" id="due-input" />
         <button type="submit">Add</button>
       </div>
+      <div class="quick-dates">
+        <button type="button" class="quick-btn" data-value="today">Today</button>
+        <button type="button" class="quick-btn" data-value="afternoon">This afternoon</button>
+        <button type="button" class="quick-btn" data-value="tomorrow">Tomorrow</button>
+        <input type="date" id="due-input" title="Pick a specific date" />
+      </div>
     </form>
+    </div>
 
     <div class="filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="active">Active</button>
+      <button class="filter-btn" data-filter="all">All</button>
+      <button class="filter-btn active" data-filter="active">Active</button>
       <button class="filter-btn" data-filter="completed">Completed</button>
+      <button class="filter-btn" data-filter="snoozed">Snoozed</button>
+      <button id="sort-btn" class="filter-btn sort-btn">Sort by date</button>
     </div>
 
     <ul id="todo-list"></ul>
